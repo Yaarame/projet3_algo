@@ -1,0 +1,58 @@
+// procedure d'initialisation de tableau //
+
+PROCEDURE init_tab(VAR tab : ARRAY_OF FLOAT, n := INTEGER)
+VAR
+    i,j : INTEGER;
+BEGIN
+    FOR i FROM 0 TO n-1 STEP 1  DO
+        write("entrer l'element du tableau");
+        read(tab[i]);
+    END_FOR
+END
+
+// procedure de permutaion de valeur de 2 variables quelconques 'a' et 'b' //
+
+PROCEDURE echanger(VAR a, VAR b := FLOAT)
+VAR
+   tmp := FLOAT;
+BEGIN
+     tmp := a;
+     a := b;
+     b := tmp;
+END
+
+// procedure de tri d'un tableau donne //
+
+PROCEDURE tri_insertion(VAR tab : ARRAY_OF FLOAT)
+VAR
+    i,j,n := INTEGER;
+BEGIN
+    n := tab.length;
+    FOR i FROM 0 TO n-1 STEP 1  DO
+        FOR j FROM 0 TO n-i-1 STEP 1  DO
+            IF (tab[j] > tab[j+1]) THEN
+                // on fait appel a la procedure de permutation ds la proced de tri en cas de necessite //
+                echanger(tab[j],tab[j+1]);
+            END_IF
+        END_FOR
+    END_FOR
+END
+
+// algorithme pour trier notre tableau //
+
+ALGORITHM tri_par_insertion
+        VAR 
+           tab : ARRAY_OF FLOAT;
+           i,n := INTEGER;
+BEGIN
+
+    // on initialise d'abord le tableau  par l'intermediaire d'une procedure //
+    init_tab(tab,n);
+
+    // puis on trie le tableau en appelant la procd 'tri_insertion' //
+        tri_insertion(tab);
+
+END
+
+
+
